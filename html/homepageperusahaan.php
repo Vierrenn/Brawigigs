@@ -1,3 +1,14 @@
+<?php
+session_start(); // Memulai sesi untuk mengakses data sesi
+
+// Cek apakah perusahaan sudah login
+if (!isset($_SESSION['email'])) {
+    // Jika tidak ada sesi login perusahaan, arahkan ke halaman login perusahaan
+    header("Location: ../html/registerloginperusahaan.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="'en">
   <head>
@@ -22,11 +33,11 @@
         ><img class="logo" id="logo" src="../asset/logo.png" alt=""
       /></a>
       <ul id="menu">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="buatmagang.html">Buat Lowongan</a></li>
-        <li><a href="">Kelola Pendaftar</a></li>
-        <li><a href="#features">Tentang Kami</a></li>
-        <button id="login-navbar-btn" href="../index.html">Logout</button>
+      <li><a href="homepageperusahaan.php">Home</a></li>
+          <li><a href="buatmagang.html">Buat Lowongan</a></li>
+          <li><a href="lihatberkas.php">Lihat Berkas</a></li>
+          <li><a href="umumkanmagang.php">Umumkan Magang</a></li>
+          <button id="login-navbar-btn" href="../index.html">Logout</button>
         </ul>
       <i id="bar" class='bx bx-menu'></i>
     </div>
@@ -50,42 +61,6 @@
     </div>
 </section>
 
-<!-- Features Section -->
- <section id="features" class="features sec-space obj-width">
-  <h2>Fitur dari BrawiGigs</h2>
-  <p>Anda bisa memanfaatkan fitur-fitur ini</p>
-
-  <div class="feature-box">
-    <div>
-      <img src="../asset/feature-1.png" alt="">
-      <h3>Cari Magang</h3>
-      <p>Anda dapat mencari magang yang relevan dengan bidang Anda menggunakan filter pencarian.</p>
-    </div>
-    <div>
-      <img src="../asset/feature-2.png" alt="">
-      <h3>Daftar Magang</h3>
-      <p>Anda dapat mendaftarkan diri ke magang yang Anda inginkan dengan mengumpulkan berkas yang dibutuhkan.</p>
-    </div>
-    <div>
-      <img src="../asset/feature-3.png" alt="">
-      <h3>Lihat Pengumuman</h3>
-      <p>Anda dapat melihat pengumuman seleksi magang dari perusahaan yang Anda daftarkan.</p>
-    </div>
-  <div>
-    <img src="../asset/feature-4.png" alt="">
-    <h3>Semua Fitur Gratis</h3>
-    <p>Anda dapat menggunakan semua fitur di website ini secara gratis.</p>
-  </div>
- </section>
-
- <!-- Job Listing -->
- <section class="internship sec-space obj-width">
-  <h2>Buat Lowongan Magang</h2>
-  <p>Buat lowongan magang Anda disini!</p>
-  <form id = "search-bar">
-    <i class='bx bx-search-alt-2'></i>
-    <input type="text" placeholder="Cari Magang" id="searchBar"> 
-  </form>
 
   
  </section>

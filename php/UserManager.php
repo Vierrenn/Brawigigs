@@ -1,5 +1,8 @@
 <?php
+session_start();
+
 include 'connect.php';
+
 class UserManager {
     private $conn;
 
@@ -9,27 +12,27 @@ class UserManager {
 
     public function registerMahasiswa($namaLengkap, $programStudi, $nim, $password, $confirmPassword) {
         if ($password !== $confirmPassword) {
-            echo "<script>
-            alert('Password dan Konfirmasi tidak cocok!');
-            window.location.href='../html/registerloginmahasiswa.html';
-            </script>";
+            return "Password dan Konfirmasi tidak cocok!";
         }
 
-        $password = md5($password); 
+        $password = md5($password); // Enkripsi password
 
-        $checkNIM = "SELECT * FROM mahasiswa WHERE nim = '$nim'";
-        $result = $this->conn->query($checkNIM);
+        // Periksa apakah NIM sudah terdaftar
+        $checkNIM = "SELECT * FROM mahasiswa WHERE nim = ?";
+        $stmt = $this->conn->prepare($checkNIM);
+        $stmt->bind_param("s", $nim);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-             echo "<script>
-            alert('NIM sudah terdaftar!');
-            window.location.href = '../html/registerloginmahasiswa.html';
-            </script>";
+            return "NIM sudah terdaftar!";
         } else {
-            $insertQuery = "INSERT INTO mahasiswa(nama_lengkap, program_studi, nim, password)
-                            VALUES ('$namaLengkap', '$programStudi', '$nim', '$password')";
-
-            if ($this->conn->query($insertQuery) === TRUE) {
+            // Masukkan data mahasiswa ke database
+            $insertQuery = "INSERT INTO mahasiswa (nama_lengkap, program_studi, nim, password) 
+                            VALUES (?, ?, ?, ?)";
+            $stmt = $this->conn->prepare($insertQuery);
+            $stmt->bind_param("ssss", $namaLengkap, $programStudi, $nim, $password);
+            if ($stmt->execute()) {
                 return "Berhasil";
             } else {
                 return "Error saat menyimpan data: " . $this->conn->error;
@@ -39,28 +42,27 @@ class UserManager {
 
     public function registerPerusahaan($namaPerusahaan, $email, $password, $confirmPassword) {
         if ($password !== $confirmPassword) {
-            echo "<script>
-            alert('Password dan konfirmasi password tidak cocok!');
-            window.location.href = '../html/registerloginperusahaan.html';
-            </script>";
-            exit();
+            return "Password dan konfirmasi password tidak cocok!";
         }
 
-        $password = md5($password); 
+        $password = md5($password); // Enkripsi password
 
-        $checkEmail = "SELECT * FROM perusahaan WHERE email = '$email'";
-        $result = $this->conn->query($checkEmail);
+        // Periksa apakah email sudah terdaftar
+        $checkEmail = "SELECT * FROM perusahaan WHERE email = ?";
+        $stmt = $this->conn->prepare($checkEmail);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            echo "<script>
-            alert('Email sudah terdaftar!');
-            window.location.href='../html/registerloginperusahaan.html';
-            </script>";
+            return "Email sudah terdaftar!";
         } else {
-            $insertQuery = "INSERT INTO perusahaan(nama_perusahaan, email, password)
-                            VALUES ('$namaPerusahaan', '$email', '$password')";
-
-            if ($this->conn->query($insertQuery) === TRUE) {
+            // Masukkan data perusahaan ke database
+            $insertQuery = "INSERT INTO perusahaan (nama_perusahaan, email, password) 
+                            VALUES (?, ?, ?)";
+            $stmt = $this->conn->prepare($insertQuery);
+            $stmt->bind_param("sss", $namaPerusahaan, $email, $password);
+            if ($stmt->execute()) {
                 return "Berhasil";
             } else {
                 return "Error saat menyimpan data: " . $this->conn->error;
@@ -69,46 +71,53 @@ class UserManager {
     }
 
     public function loginMahasiswa($nim, $password) {
-        $password = md5($password); 
+        $password = md5($password); // Enkripsi password
 
-        $checkLogin = "SELECT * FROM mahasiswa WHERE nim = '$nim' AND password = '$password'";
-        $result = $this->conn->query($checkLogin);
+        // Periksa login mahasiswa
+        $checkLogin = "SELECT * FROM mahasiswa WHERE nim = ? AND password = ?";
+        $stmt = $this->conn->prepare($checkLogin);
+        $stmt->bind_param("ss", $nim, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             session_start();
-            $_SESSION['nim'] = $nim;
+            $row = $result->fetch_assoc();
+            $_SESSION['nim'] = $row['nim'];
+            $_SESSION['nama_lengkap'] = $row['nama_lengkap'];
             header("Location: ../html/homepagemahasiswa.php");
             exit();
         } else {
-            echo "<script>
-            alert('NIM atau password salah!');
-            window.location.href = '../html/registerloginmahasiswa.html';
-          </script>";
-         }
+            return "NIM atau password salah!";
+        }
     }
 
     public function loginPerusahaan($email, $password) {
-        $password = md5($password); 
+        $password = md5($password); // Enkripsi password
 
-        $checkLogin = "SELECT * FROM perusahaan WHERE email = '$email' AND password = '$password'";
-        $result = $this->conn->query($checkLogin);
+        // Periksa login perusahaan
+        $checkLogin = "SELECT * FROM perusahaan WHERE email = ? AND password = ?";
+        $stmt = $this->conn->prepare($checkLogin);
+        $stmt->bind_param("ss", $email, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             session_start();
-            $_SESSION['email'] = $email;
+            $row = $result->fetch_assoc();
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['nama_perusahaan'] = $row['nama_perusahaan'];
             header("Location: ../html/homepageperusahaan.php");
             exit();
         } else {
-            echo "<script>
-            alert('Email atau password salah!');
-            window.location.href='../html/registerloginperusahaan.html';
-            </script>"; 
+            return "Email atau password salah!";
         }
     }
 }
 
-
 $userManager = new UserManager($conn);
+
+// Proses registrasi mahasiswa
 if (isset($_POST['register-button-mahasiswa'])) {
     $response = $userManager->registerMahasiswa(
         $_POST['namaLengkap'], 
@@ -122,12 +131,16 @@ if (isset($_POST['register-button-mahasiswa'])) {
         echo "<script>
         alert('Registrasi berhasil!');
         window.location.href = '../html/registerloginmahasiswa.html'; 
-      </script>";
+        </script>";
     } else {
-        echo $response;
+        echo "<script>
+        alert('$response');
+        window.location.href = '../html/registerloginmahasiswa.html'; 
+        </script>";
     }
 }
 
+// Proses registrasi perusahaan
 if (isset($_POST['register-button-perusahaan'])) {
     $response = $userManager->registerPerusahaan(
         $_POST['namaPerusahaan'], 
@@ -140,18 +153,42 @@ if (isset($_POST['register-button-perusahaan'])) {
         echo "<script>
         alert('Registrasi berhasil!');
         window.location.href = '../html/registerloginperusahaan.html'; 
-      </script>";
-        echo $response;
+        </script>";
+    } else {
+        echo "<script>
+        alert('$response');
+        window.location.href = '../html/registerloginperusahaan.html'; 
+        </script>";
     }
 }
 
+// Proses login mahasiswa
 if (isset($_POST['login-button-mahasiswa'])) {
-    echo $userManager->loginMahasiswa($_POST['login-nim-mahasiswa'], $_POST['login-password-mahasiswa']);
+    $response = $userManager->loginMahasiswa(
+        $_POST['login-nim-mahasiswa'], 
+        $_POST['login-password-mahasiswa']
+    );
+
+    if ($response) {
+        echo "<script>
+        alert('$response');
+        window.location.href = '../html/registerloginmahasiswa.html'; 
+        </script>";
+    }
 }
 
+// Proses login perusahaan
 if (isset($_POST['login-button-perusahaan'])) {
-    echo $userManager->loginPerusahaan($_POST['login-email-perusahaan'], $_POST['login-password-perusahaan']);
+    $response = $userManager->loginPerusahaan(
+        $_POST['login-email-perusahaan'], 
+        $_POST['login-password-perusahaan']
+    );
+
+    if ($response) {
+        echo "<script>
+        alert('$response');
+        window.location.href = '../html/registerloginperusahaan.html'; 
+        </script>";
+    }
 }
-
 ?>
-

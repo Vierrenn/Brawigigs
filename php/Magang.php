@@ -23,8 +23,6 @@ class Magang {
             return "Gagal menyimpan lowongan: " . $stmt->error;
         }
     }
-    
-    
 
     public function ambilLowongan() {
         $sql = "SELECT id_magang, judul_magang, nama_perusahaan, lokasi, requirements, logo_url FROM magang";
@@ -40,6 +38,19 @@ class Magang {
         return $data;
     }
 
+    public function buatPendaftaran($idMahasiswa, $idMagang) {
+        $stmt = $this->conn->prepare(
+            "INSERT INTO pendaftaran (id_mahasiswa, id_magang, status_pendaftaran) VALUES (?, ?, 'Pending')"
+        );
+        $stmt->bind_param("ii", $idMahasiswa, $idMagang);
+
+        if ($stmt->execute()) {
+            return $this->conn->insert_id; // Kembalikan id_pendaftaran yang baru dibuat
+        } else {
+            return false;
+        }
+    }
+
     public function __destruct() {
         $this->conn->close();
     }
@@ -50,38 +61,29 @@ $user = 'root';
 $password = ''; 
 $dbname = 'brawigigs'; 
 
-include "connect.php"; 
+include "connect.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $judulMagang = $_POST["job-title"];
-    $namaPerusahaan = $_POST["company-name"];
-    $lokasi = $_POST["location"];
-    $requirements = $_POST["requirements"];
+session_start();
+$idMahasiswa = $_SESSION['nim']; 
 
-    $uploadDir = "../uploads/";
-    $fileTmpPath = $_FILES['logo_url']['tmp_name'];
-    $fileName = $_FILES['logo_url']['name'];
-    $fileSize = $_FILES['logo_url']['size'];
-    $fileType = $_FILES['logo_url']['type'];
-    $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+$magang = new Magang($host, $user, $password, $dbname);
 
-    // Validasi file hanya PNG
-    if ($fileType === 'image/png' && $fileSize <= 2 * 1024 * 1024) { // Maks 2MB
-        $newFileName = uniqid() . '.' . $fileExtension;
-        $destPath = $uploadDir . $newFileName;
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id_magang'])) {
+    $idMagang = $_POST['id_magang'];
 
-        if (move_uploaded_file($fileTmpPath, $destPath)) {
-            $logoUrl = $destPath; // Simpan path ke database
+    // Buat pendaftaran baru
+    $idPendaftaran = $magang->buatPendaftaran($idMahasiswa, $idMagang);
 
-            $magang = new Magang($host, $user, $password, $dbname);
-            $result = $magang->buatLowongan($judulMagang, $namaPerusahaan, $lokasi, $requirements, $logoUrl);
-            echo $result;
-        } else {
-            echo "Gagal mengunggah logo.";
-        }
+    if ($idPendaftaran) {
+        $_SESSION['id_pendaftaran'] = $idPendaftaran; // Simpan id_pendaftaran ke sesi
+        header("Location: daftarmagang.php"); // Redirect ke halaman unggah berkas
+        exit();
     } else {
-        echo "Logo harus berupa file PNG dengan ukuran maksimal 2MB.";
+        echo "Gagal membuat pendaftaran.";
     }
 }
 
+$lowongan = $magang->ambilLowongan();
 ?>
+
+

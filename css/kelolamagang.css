@@ -1,0 +1,218 @@
+/* Reset dan pengaturan dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+.sec-space {
+  padding: 4rem 0;
+}
+
+.extra-space {
+  padding-top: 8rem;
+}
+
+.obj-width {
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* Navbar */
+header {
+  background-color: #585b82;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+#navbar .logo {
+  height: 100px;
+  width: auto;
+  align-items: center;
+}
+
+#menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+}
+
+#menu li a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 40px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+#login-navbar-btn {
+  margin-left: 40px;
+  background: #fff;
+  color: #585b82;
+  padding: 9px 30px;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#login-navbar-btn:hover {
+  background: #585b82;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+#login-navbar-btn:active {
+  background: #333c56;
+  color: #fff;
+  transform: scale(0.98);
+}
+
+#bar {
+  color: #fff;
+  display: none;
+}
+
+/* Container utama */
+.container {
+  max-width: 1100px;
+  margin: 100px auto 50px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #44476a;
+  margin-bottom: 20px;
+}
+
+.container p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Tabel daftar pendaftar */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table thead {
+  background-color: #585b82;
+  color: #fff;
+}
+
+table th,
+table td {
+  text-align: left;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+table th {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+table td button {
+  background-color: #44476a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+table td button:hover {
+  background-color: #36395a;
+}
+
+table td button:active {
+  background-color: #2c2e48;
+  transform: scale(0.97);
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  #navbar {
+    padding: 15px 5%;
+  }
+
+  .container {
+    padding: 20px;
+    margin: 80px auto;
+  }
+
+  #menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #menu li a {
+    font-size: 0.9rem;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  table th,
+  table td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 60px auto;
+  }
+
+  .container h1 {
+    font-size: 1.8rem;
+  }
+
+  #menu li a {
+    font-size: 0.8rem;
+  }
+
+  #login-navbar-btn {
+    font-size: 1rem;
+    padding: 7px 25px;
+  }
+}

@@ -57,7 +57,7 @@ $data = $result->fetch_assoc()
         <h2><?php echo htmlspecialchars($data['nama_perusahaan']); ?></h2>
       </div>
     </div>
-    <a id="daftar-btn" href="daftarmagang.html">Daftar Sekarang</a>
+    <a id="daftar-btn" href="daftarmagang.php">Daftar Sekarang</a>
   </div>
   
 
