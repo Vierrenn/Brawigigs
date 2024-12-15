@@ -73,7 +73,7 @@ $_SESSION['id_pendaftaran'] = $id_pendaftaran;
       <p>Unggah semua berkas yang diperlukan untuk pendaftaran magang Anda. Pastikan file dalam format yang benar dan tidak melebihi ukuran maksimal.</p>
     </div>
 
-    <form class="extra-space-form obj-width" id="upload-form" action="../php/uploadberkas.php" method="post" enctype="multipart/form-data">
+    <form class="extra-space-form obj-width" id="upload-form" action="../php/Berkas.php" method="post" enctype="multipart/form-data">
       <!-- ID Pendaftaran -->
       <input type="hidden" name="id_pendaftaran" value="<?php echo $id_pendaftaran; ?>">
 

@@ -43,7 +43,7 @@ $dataLowongan = $magang->ambilLowongan();
         <ul id="menu">
           <li><a href="#hero">Home</a></li>
           <li><a href="#search-bar">Cari Magang</a></li>
-          <li><a href="pengumuman.html">Lihat Pengumuman</a></li>
+          <li><a href="pengumuman.php">Lihat Pengumuman</a></li>
           <li><a href="#features">Tentang Kami</a></li>
           <button id="login-navbar-btn">Logout</button>
         </ul>

@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $berkas = $_FILES['berkas'];
 
     $allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png'];
-    $uploadDir = "../uploads/$id_pendaftaran/";
+    $uploadDir = "../berkas/$id_pendaftaran/";
 
     // Buat folder jika belum ada
     if (!is_dir($uploadDir)) {
