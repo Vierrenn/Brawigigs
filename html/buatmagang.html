@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buat Lowongan Magang</title>
+    <link rel="stylesheet" href="../css/buatmagang.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+        <div id="navbar" class="obj-width">
+          <a href="homepage.html"
+            ><img class="logo" id="logo" src="../asset/logo.png" alt=""
+          /></a>
+          <ul id="menu">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#search-bar">Buat Lowongan</a></li>
+            <li><a href="pengumuman.html">Kelola Pendaftar</a></li>
+            <li><a href="#features">Tentang Kami</a></li>
+            <button id="login-navbar-btn" href="../index.html">Logout</button>
+          </ul>
+    
+          <i id="bar" class='bx bx-menu'></i>
+        </div>
+        
+      </header>
+
+    <section class="form-section">
+      <div class="form-container obj-width">
+        <h1>Buat Lowongan Magang</h1>
+        <p>Isi form di bawah ini untuk membuat lowongan magang baru.</p>
+        <form action="../php/Magang.php" method="POST" enctype="multipart/form-data">
+          <label for="job-title">Judul Magang</label>
+          <input type="text" id="job-title" name="job-title" placeholder="Contoh: Web Developer" required />
+
+          <label for="company-name">Nama Perusahaan</label>
+          <input type="text" id="company-name" name="company-name" placeholder="Nama Perusahaan Anda" required />
+
+          <label for="location">Lokasi</label>
+          <input type="text" id="location" name="location" placeholder="Contoh: Jakarta, Indonesia" required />
+
+          <label for="requirements">Skill Dibutuhkan</label>
+          <textarea id="requirements" name="requirements" placeholder="Contoh: Python, Javascript..." required></textarea>
+
+          <label for="logo_url"></label>
+          <p>Logo Perusahaan (png only)</p>
+          <input type="file" name = "logo_url" accept=".png" required>
+
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

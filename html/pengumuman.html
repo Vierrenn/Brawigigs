@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Magang - Google</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="../css/pengumuman.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+</head>
+
+<!-- Navbar -->
+<body>
+  <header>
+    <div id="navbar" class="obj-width">
+      <a href="homepage.html"
+        ><img class="logo" id="logo" src="../asset/logo.png" alt=""
+      /></a>
+      <ul id="menu">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#search-bar">Cari Magang</a></li>
+        <li><a href="">Lihat Pengumuman</a></li>
+        <li><a href="#features">Tentang Kami</a></li>
+        <button id="login-navbar-btn">Logout</button>
+      </ul>
+
+      <i id="bar" class='bx bx-menu'></i>
+    </div>
+  </header>
+
+
+  <body>
+        <h1>Pengumuman Magang</h1>
+    <main>
+        <div id="not-registered" class="message">
+            Anda belum mendaftar magang.
+        </div>
+
+        <div id="registered" style="display: none;">
+            <h2>Perusahaan yang Anda Daftarkan</h2>
+            <div class="company-list" id="company-list">
+             
+            </div>
+        </div>
+
+        <div id="announcement-section" style="display: none;">
+            <div class="announcement" id="announcement">
+    
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const userRegistered = true; 
+        const registeredCompanies = [
+            {
+                id: 1,
+                name: "Google Indonesia",
+                announcement: "Selamat! Anda lolos seleksi. Silakan contact kami di google@gmail.com."
+            },
+            {
+                id: 2,
+                name: "Wireshark",
+                announcement: null 
+            }
+        ];
+
+      
+        const notRegisteredMessage = document.getElementById("not-registered");
+        const registeredSection = document.getElementById("registered");
+        const companyList = document.getElementById("company-list");
+        const announcementSection = document.getElementById("announcement-section");
+        const announcement = document.getElementById("announcement");
+
+       
+        if (userRegistered) {
+            notRegisteredMessage.style.display = "none";
+            registeredSection.style.display = "block";
+
+            registeredCompanies.forEach(company => {
+                const companyDiv = document.createElement("div");
+                companyDiv.classList.add("company");
+
+                const companyName = document.createElement("span");
+                companyName.textContent = company.name;
+
+                const button = document.createElement("button");
+                button.textContent = "Lihat Pengumuman";
+                button.onclick = () => showAnnouncement(company);
+
+                companyDiv.appendChild(companyName);
+                companyDiv.appendChild(button);
+                companyList.appendChild(companyDiv);
+            });
+        } else {
+            notRegisteredMessage.style.display = "block";
+        }
+
+        function showAnnouncement(company) {
+            announcementSection.style.display = "block";
+
+            if (company.announcement) {
+                announcement.innerHTML = `
+                    <h3>${company.name}</h3>
+                    <p>${company.announcement}</p>
+                `;
+            } else {
+                announcement.innerHTML = `
+                    <h3>${company.name}</h3>
+                    <p>Perusahaan belum membuat pengumuman.</p>
+                `;
+            }
+        }
+    </script>
+</html>

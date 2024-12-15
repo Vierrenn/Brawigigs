@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  body {
+    position: relative;
+    background-color: #f9f9f9;
+  }
+
+  .sec-space {
+    padding: 4rem 0;
+  }
+  
+  .extra-space-div {
+    padding-top: 2rem; 
+  }
+  
+  .obj-width {
+    max-width: 1100px;
+    margin: auto;
+  }
+
+    /* Navbar */
+
+header {
+    background-color: #585b82;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 999;
+  }
+  
+  #menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+  }
+  
+  #menu li a {
+    color: #fff;
+  }
+  
+  #navbar .logo {
+    height: 100px;
+    width: auto;
+    align-items: center;
+  }
+  
+  #navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    
+  }
+  
+  #menu li a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  #login-navbar-btn {
+    margin-left: 40px;
+    background: #fff;
+    color: #585b82;
+    padding: 9px 30px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: none;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  
+  #login-navbar-btn:hover {
+      background: #585b82;  
+      color: #fff;  
+      transform: scale(1.05);  
+    }
+    
+    #login-navbar-btn:active {
+      background: #333c56; 
+      color: #fff;  
+      transform: scale(0.98);  
+    }
+  
+  #bar {
+    color: #fff;
+    display: none;
+  }
+
+  main {
+    padding: 100px 20px 20px; /* Tambahkan padding-top agar tidak tertimpa navbar */
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  h1 {
+    text-align: center;
+    margin-top: 7rem;
+    color: #333;
+    font-weight: 700;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+    color: #444;
+    font-weight: 500;
+  }
+  
+
+  .message {
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 1.2rem;
+    color: #555;
+  }
+
+  .company-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .company {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .company button {
+    padding: 0.5rem 1rem;
+    background-color: #585b82;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .company button:hover {
+    background-color: #2f3041;
+  }
+
+  .announcement {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    max-width: 600px;
+  }
+
+  .announcement p {
+    margin: 0.5rem 0;
+  }

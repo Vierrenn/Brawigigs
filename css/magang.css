@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  body {
+    position: relative;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 60px;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    padding-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  /* Detail Magang */
+.internship-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.internship-header img{
+    width: 100px;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 15px;
+    margin-right: 2rem;
+}
+
+  

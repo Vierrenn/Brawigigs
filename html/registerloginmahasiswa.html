@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/registerlogin.css" />
+    <title>Register and Login Page</title>
+  </head>
+
+  <body>
+    <div class="container" id="container">
+
+      <!-- REGISTER -->
+      <div class="form-container registerbutton">
+        <form method="post" action="../php/UserManager.php">
+          <h1>Buat Akun</h1>
+          <input type="text" name="namaLengkap" placeholder="Nama Lengkap" required />
+          <input type="text" name="programStudi" placeholder="Program Studi" required />
+          <input type="text" name="nim" placeholder="NIM" required />
+          <input type="password" name="password" placeholder="Password" required />
+          <input type="password" name="confirmPassword" placeholder="Konfirmasi Password" required />
+          <button class="appear" name="register-button-mahasiswa" id="register-button-mahasiswa">Register</button>
+        </form>
+      </div>
+      
+      <!-- LOGIN -->
+      <div class="form-container login">
+        <form method="post" action="../php/UserManager.php">
+          <h1>Login</h1>
+          <input type="text" name="login-nim-mahasiswa" placeholder="NIM" required />
+          <input type="password" name="login-password-mahasiswa" placeholder="Password" required />
+          <button class="appear" name="login-button-mahasiswa" id="login-button-mahasiswa">Login</button>
+        </form>
+      </div>
+      
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>Selamat Datang di BrawiGigs!</h1>
+            <p>Masukkan NIM dan Password Anda untuk mengakses fitur BrawiGigs!</p>
+            <button class="hidden" id="login-toggle">Login</button>
+          </div>
+          <div class="toggle-panel toggle-right">
+            <h1>Selamat datang di BrawiGigs!</h1>
+            <p>Daftarkan akun Anda untuk mengakses fitur BrawiGigs!</p>
+            <button class="hidden" id="register-toggle">Register</button>
+          </div>
+        </div>
+        <p>@BrawiGigs 2024</p>
+      </div>
+
+    <script src="../js/script.js"></script>
+    
+  </body>
+</html>

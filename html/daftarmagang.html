@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Magang - Google</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="../css/daftarmagang.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+</head>
+
+<!-- Navbar -->
+<body>
+    <header>
+      <div id="navbar" class="obj-width">
+        <a href="homepage.html"
+          ><img class="logo" id="logo" src="../asset/logo.png" alt=""
+        /></a>
+        <ul id="menu">
+          <li><a href="homepage.php">Home</a></li>
+          <li><a href="homepage.php#hero-section">Cari Magang</a></li>
+          <li><a href="">Lihat Pengumuman</a></li>
+          <li><a href="homepage.php">Tentang Kami</a></li>
+          <button id="login-navbar-btn">Logout</button>
+        </ul>
+  
+        <i id="bar" class='bx bx-menu'></i>
+      </div>
+    </header>
+
+
+    <div class="body-background">
+
+    <body>
+         <div class="extra-space-div obj-width">
+            <h1>Unggah Berkas Pendaftaran Magang</h1>
+            <p>Unggah semua berkas yang diperlukan untuk pendaftaran magang Anda. Pastikan file dalam format yang benar dan tidak melebihi ukuran maksimal.</p>
+        </div>
+    </body>
+
+        <form class="extra-space-form obj-width" id="upload-form" action="/submit" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="cv">Curriculum Vitae (CV):</label>
+                <input type="file" id="cv" accept=".pdf" required />
+                <p>Menerima file: .pdf</p>
+            </div>
+
+            <div class="form-group">
+                <label for="transkrip">Transkrip Nilai:</label>
+                <input type="file" id="transkrip-nilai" accept=".pdf">
+                <p>Menerima file: .pdf</p>
+            </div>
+
+            <div class="form-group">
+                <label for="rekomendasi">Surat Rekomendasi dari Universitas:</label>
+                <input type="file" id="rekomendasi" name="rekomendasi" accept=".pdf" required />
+                <p>Menerima file: .pdf</p>
+              </div>
+              
+              <div class="form-group">
+                <label for="sptjm">Surat Pernyataan Tanggungjawab Mutlak (SPTJM):</label>
+                <input type="file" id="sptjm" name="sptjm" accept=".pdf" required />
+                <p>Menerima file: .pdf</p>
+              </div>
+              
+              <div class="form-group">
+                <label for="ktp">Foto/Scan KTP:</label>
+                <input type="file" id="ktp" name="ktp" accept=".jpg, .jpeg, .png, .pdf" required />
+                <p>Menerima file: .jpg, .jpeg, .png, .pdf</p>
+              </div>
+
+              <button type="submit">Submit</button>
+              <button type="reset">Reset</button>
+
+        </form>
+</div>
+</html>

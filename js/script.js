@@ -9,3 +9,4 @@ registerToggle.addEventListener("click", () => {
 loginToggle.addEventListener("click", () => {
   container.classList.remove("active");
 });
+
