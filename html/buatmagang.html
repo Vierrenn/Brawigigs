@@ -31,58 +31,121 @@
         <i id="bar" class="bx bx-menu"></i>
       </div>
     </header>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Buat Lowongan Magang</title>
+        <link rel="stylesheet" href="../css/buatmagang.css" />
+      </head>
+      <body>
+        <header>
+          <div id="navbar" class="obj-width">
+            <a href="homepage.html"
+              ><img class="logo" src="../asset/logo.png" alt="Logo"
+            /></a>
+            <ul id="menu">
+              <li><a href="homepageperusahaan.php">Home</a></li>
+              <li><a href="buatmagang.php">Buat Lowongan</a></li>
+              <li><a href="lihatberkas.php">Lihat Berkas</a></li>
+              <li><a href="umumkanmagang.php">Umumkan Magang</a></li>
+              <button onclick="window.location.href='../index.html'">
+                Logout
+              </button>
+            </ul>
+          </div>
+        </header>
 
-    <section class="form-section">
-      <div class="form-container obj-width">
-        <h1>Buat Lowongan Magang</h1>
-        <p>Isi form di bawah ini untuk membuat lowongan magang baru.</p>
-        <form
-          action="../php/Magang.php"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <label for="job-title">Judul Magang</label>
-          <input
-            type="text"
-            id="job-title"
-            name="job-title"
-            placeholder="Contoh: Web Developer"
-            required
-          />
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>Buat Lowongan Magang</title>
+            <link rel="stylesheet" href="../css/buatmagang.css" />
+          </head>
+          <body>
+            <header>
+              <div id="navbar" class="obj-width">
+                <a href="homepage.html"
+                  ><img class="logo" src="../asset/logo.png" alt="Logo"
+                /></a>
+                <ul id="menu">
+                  <li><a href="homepageperusahaan.php">Home</a></li>
+                  <li><a href="buatmagang.php">Buat Lowongan</a></li>
+                  <li><a href="lihatberkas.php">Lihat Berkas</a></li>
+                  <li><a href="umumkanmagang.php">Umumkan Magang</a></li>
+                  <button onclick="window.location.href='../index.html'">
+                    Logout
+                  </button>
+                </ul>
+              </div>
+            </header>
 
-          <label for="company-name">Nama Perusahaan</label>
-          <input
-            type="text"
-            id="company-name"
-            name="company-name"
-            placeholder="Nama Perusahaan Anda"
-            required
-          />
+            <section class="form-section">
+              <div class="form-container">
+                <h1>Buat Lowongan Magang</h1>
+                <p>Isi form di bawah ini untuk membuat lowongan magang baru.</p>
+                <form
+                  action="../php/Magang.php"
+                  method="POST"
+                  enctype="multipart/form-data"
+                >
+                  <label for="job-title">Judul Magang</label>
+                  <input
+                    type="text"
+                    id="job-title"
+                    name="job-title"
+                    placeholder="Contoh: Web Developer"
+                    required
+                  />
 
-          <label for="location">Lokasi</label>
-          <input
-            type="text"
-            id="location"
-            name="location"
-            placeholder="Contoh: Jakarta, Indonesia"
-            required
-          />
+                  <label for="company-name">Nama Perusahaan</label>
+                  <input
+                    type="text"
+                    id="company-name"
+                    name="company-name"
+                    placeholder="Nama Perusahaan Anda"
+                    required
+                  />
 
-          <label for="requirements">Skill Dibutuhkan</label>
-          <textarea
-            id="requirements"
-            name="requirements"
-            placeholder="Contoh: Python, Javascript..."
-            required
-          ></textarea>
+                  <label for="location">Lokasi</label>
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="Contoh: Jakarta, Indonesia"
+                    required
+                  />
 
-          <label for="logo_url"></label>
-          <p>Logo Perusahaan (png only)</p>
-          <input type="file" name="logo_url" accept=".png" required />
+                  <label for="requirements">Skill Dibutuhkan</label>
+                  <textarea
+                    id="requirements"
+                    name="requirements"
+                    placeholder="Contoh: Python, Javascript..."
+                    required
+                  ></textarea>
 
-          <button type="submit" class="submit-btn">Submit</button>
-        </form>
-      </div>
-    </section>
+                  <label for="logo_url">Logo Perusahaan (PNG only)</label>
+                  <input
+                    type="file"
+                    id="logo_url"
+                    name="logo_url"
+                    accept=".png"
+                    required
+                  />
+
+                  <button type="submit" class="submit-btn">Submit</button>
+                </form>
+              </div>
+            </section>
+          </body>
+        </html>
+      </body>
+    </html>
   </body>
 </html>

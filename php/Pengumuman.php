@@ -4,7 +4,6 @@ include "../php/connect.php";
 class Pengumuman {
     private $conn;
 
-    // Konstruktor untuk inisialisasi koneksi
     public function __construct($host, $user, $password, $dbname) {
         $this->conn = new mysqli($host, $user, $password, $dbname);
 
@@ -13,9 +12,7 @@ class Pengumuman {
         }
     }
 
-    // Method untuk menyimpan pengumuman
     public function simpanPengumuman($id_pendaftaran, $status, $kalimat_pengumuman) {
-        // Menyiapkan query untuk menyimpan pengumuman
         $stmt = $this->conn->prepare("INSERT INTO pengumuman (id_pendaftaran, status, kalimat_pengumuman) 
                                       VALUES (?, ?, ?) 
                                       ON DUPLICATE KEY UPDATE status = VALUES(status), kalimat_pengumuman = VALUES(kalimat_pengumuman)");

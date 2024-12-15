@@ -75,8 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id_magang'])) {
     $idPendaftaran = $magang->buatPendaftaran($idMahasiswa, $idMagang);
 
     if ($idPendaftaran) {
-        $_SESSION['id_pendaftaran'] = $idPendaftaran; // Simpan id_pendaftaran ke sesi
-        header("Location: daftarmagang.php"); // Redirect ke halaman unggah berkas
+        $_SESSION['id_pendaftaran'] = $idPendaftaran; 
+        header("Location: daftarmagang.php"); 
         exit();
     } else {
         echo "Gagal membuat pendaftaran.";

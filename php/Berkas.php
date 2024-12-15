@@ -23,12 +23,10 @@ class Berkas {
         }
     }
 
-    // Validasi ekstensi file
     private function validasiEkstensiFile($file_ext) {
         return in_array(strtolower($file_ext), $this->allowed_ext);
     }
 
-    // Pindahkan file dan simpan metadata
     private function unggahFile($tmp_name, $nama_file) {
         $file_ext = pathinfo($nama_file, PATHINFO_EXTENSION);
         $nama_file_uniq = uniqid() . "_" . $nama_file;
@@ -45,7 +43,6 @@ class Berkas {
         return false;
     }
 
-    // Simpan metadata ke database
     private function simpanFileKeDatabase($jenis_berkas, $nama_file, $path_file, $file_ext) {
         $stmt = $this->conn->prepare(
             "INSERT INTO berkas (id_pendaftaran, jenis_berkas, nama_file, path_file, tipe_file) 
@@ -60,7 +57,6 @@ class Berkas {
         return false;
     }
 
-    // Fungsi untuk mengunggah semua file
     public function unggahSemuaBerkas() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['berkas'])) {
             foreach ($_FILES['berkas']['name'] as $jenis_berkas => $nama_file) {

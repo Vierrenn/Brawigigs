@@ -1,6 +1,5 @@
 <?php
 include "../php/connect.php";
-// Periksa koneksi
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -10,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = $_POST['status']; 
     $kalimat_pengumuman = $_POST['kalimat_pengumuman'];
 
-    // Menyiapkan query untuk menyimpan pengumuman
     $stmt = $conn->prepare("INSERT INTO pengumuman (id_pendaftaran, status, kalimat_pengumuman) 
                             VALUES (?, ?, ?) 
                             ON DUPLICATE KEY UPDATE status = VALUES(status), kalimat_pengumuman = VALUES(kalimat_pengumuman)");
